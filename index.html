@@ -52,8 +52,8 @@
             col.innerHTML = `
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"></h5>
-                        <img src="https://dog.ceo/api/breed//images/random" class="card-img-top" alt="">
+                        <h5 class="card-title">${breed.charAt(0).toUpperCase() + breed.slice(1)}</h5>
+                        <img src="https://dog.ceo/api/breed/${breed}/images/random" class="card-img-top" alt="${breed}">
                     </div>
                 </div>
             `;
@@ -69,7 +69,7 @@
         for (let i = 1; i <= totalPages; i++) {
             const li = document.createElement('li');
             li.className = 'page-item' + (i === currentPage ? ' active' : '');
-            li.innerHTML = `<a class="page-link" href="#" onclick="changePage()"></a>`;
+            li.innerHTML = `<a class="page-link" href="#" onclick="changePage(${i})">${i}</a>`;
             pagination.appendChild(li);
         }
     }
@@ -82,7 +82,7 @@
 
     function searchBreeds() {
         const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-        const filteredBreeds = breeds.filter(breed => breed.toLowerCase().includes(searchTerm));
+        const filteredBreeds = breeds.filter(breed => breed.toLowerCase().startsWith(searchTerm));
         const totalPages = Math.ceil(filteredBreeds.length / breedsPerPage);
         currentPage = 1; // Reset to first page
         renderFilteredBreeds(filteredBreeds);
@@ -103,13 +103,9 @@
             col.innerHTML = `
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"></h5>
-                        <img src="https://dog.ceo/api/breed//images/random" class="card-img-top" alt="">
+                        <h5 class="card-title">${breed.charAt(0).toUpperCase() + breed.slice(1)}</h5>
+                        <img src="https://dog.ceo/api/breed/${breed}/images/random" class="card-img-top" alt="${breed}">
                     </div>
                 </div>
             `;
-            dogGallery.appendChild(col);
-        });
-    }
-
-    function
+            dogGallery.appendChild
